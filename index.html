@@ -1,103 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nzimande Builders</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        
-        nav {
-            background-color: #34495e;
-            padding: 1rem;
-            text-align: center;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-        
-        nav a:hover {
-            text-decoration: underline;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .hero {
-            background-color: #3498db;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
-    </style>
+<title>Nzimande Builders Hardware</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial; margin:0; background:#f2f2f2;}
+header {background:#222; color:white; padding:20px; text-align:center;}
+.container {padding:20px;}
+.products {display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px;}
+.card {background:white; padding:15px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+button {background:green; color:white; border:none; padding:10px; border-radius:5px;}
+.summary {background:white; padding:15px; margin-top:20px; border-radius:8px;}
+input {width:100%; padding:8px; margin-bottom:10px;}
+footer {background:#222; color:white; text-align:center; padding:15px; margin-top:20px;}
+</style>
 </head>
+
 <body>
-    <header>
-        <h1>Nzimande Builders</h1>
-    </header>
-    
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    
-    <div class="container">
-        <div class="hero">
-            <h2>Welcome to Nzimande Builders</h2>
-            <p>Your trusted partner in building excellence</p>
-        </div>
-        
-        <section id="about">
-            <h2>About Us</h2>
-            <p>We are committed to delivering quality construction and building services.</p>
-        </section>
-        
-        <section id="services">
-            <h2>Our Services</h2>
-            <ul>
-                <li>Construction</li>
-                <li>Renovation</li>
-                <li>Design</li>
-            </ul>
-        </section>
-    </div>
-    
-    <footer>
-        <p>&copy; 2026 Nzimande Builders. All rights reserved.</p>
-    </footer>
+
+<header>
+<h2>Nzimande Builders Hardware</h2>
+<p>Call / WhatsApp: 0822886917</p>
+</header>
+
+<div class="container">
+
+<h3>Products</h3>
+
+<div class="products">
+
+<div class="card">
+<h4>M150 Concrete Block</h4>
+<p>R12 each</p>
+<button onclick="add(12)">Add to Cart</button>
+</div>
+
+<div class="card">
+<h4>Cement 50kg</h4>
+<p>R120</p>
+<button onclick="add(120)">Add to Cart</button>
+</div>
+
+<div class="card">
+<h4>Roof Sheets</h4>
+<p>R250</p>
+<button onclick="add(250)">Add to Cart</button>
+</div>
+
+<div class="card">
+<h4>Concrete Lintels</h4>
+<p>R180</p>
+<button onclick="add(180)">Add to Cart</button>
+</div>
+
+</div>
+
+<h3>Delivery Calculator</h3>
+<input type="number" id="km" placeholder="Enter distance in km" oninput="update()">
+
+<div class="summary">
+<h3>Order Summary</h3>
+<p>Items: <span id="items">0</span></p>
+<p>Subtotal: R<span id="sub">0</span></p>
+<p>Delivery: R<span id="del">0</span></p>
+<p><strong>Total: R<span id="tot">0</span></strong></p>
+
+<button onclick="order()">Order via WhatsApp</button>
+</div>
+
+</div>
+
+<footer>
+© 2026 Nzimande Builders Hardware
+</footer>
+
+<script>
+let items=0;
+let subtotal=0;
+
+function add(price){
+items++;
+subtotal+=price;
+update();
+}
+
+function update(){
+let km=document.getElementById("km").value||0;
+let delivery=km*5;
+let total=subtotal+parseInt(delivery);
+
+document.getElementById("items").innerText=items;
+document.getElementById("sub").innerText=subtotal;
+document.getElementById("del").innerText=delivery;
+document.getElementById("tot").innerText=total;
+}
+
+function order(){
+let total=document.getElementById("tot").innerText;
+let msg="Order from Nzimande Builders Hardware - Total: R"+total;
+window.open("https://wa.me/27822886917?text="+encodeURIComponent(msg));
+}
+</script>
+
 </body>
 </html>
